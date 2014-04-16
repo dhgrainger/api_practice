@@ -15,7 +15,7 @@ def nutrition(ingredient)
   # puts "Carbs: #{((values["hits"][0]["fields"]["nf_total_carbohydrates"].to_f)*4)} "
   # puts "Protein: #{((values["hits"][0]["fields"]["nf_protein"].to_f)*4)} "
 
-# Here I find the
+# Here I find the attributes i need convert carbs protein and fats from grams to calories and insert them into a hash
   name = values["hits"][0]["fields"]["item_name"]
   calories = values["hits"][0]["fields"]["nf_calories"].to_f
   fat = ((values["hits"][0]["fields"]["nf_total_fat"].to_f)*9)
@@ -28,6 +28,9 @@ end
 
   params = gets.chomp
 
+  if params.include? ' '
+    params = params.split(' ').join('+')
+  end
   search = 'http://www.recipepuppy.com/api/?q=' + params
 
   # source = 'http://www.recipepuppy.com/api/?q=chicken'

@@ -2,6 +2,8 @@ require 'json'
 require 'pry'
 require 'net/http'
 # more practive using the yummly api
+
+puts "Enter an ingedient you like"
 params = gets.chomp
 
 if params.include? ' '
@@ -15,4 +17,9 @@ end
   resp = Net::HTTP.get_response(URI.parse(search))
   data = resp.body
   recipes = JSON.parse(data)
-  binding.pry
+
+  recipes["matches"].each do |recipe|
+    puts recipe["recipeName"]
+    recipe["ingredients"].each {|ingredient| puts ingredient }
+    puts recipe["id"]
+  end
