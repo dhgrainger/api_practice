@@ -1,7 +1,7 @@
 require 'json'
 require 'pry'
 require 'net/http'
-
+# more practive using the yummly api
 params = gets.chomp
 
 if params.include? ' '
