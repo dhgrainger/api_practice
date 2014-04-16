@@ -9,10 +9,20 @@ require 'net/http'
   data = resp.body
   recipes = JSON.parse(data)
 
+  binding.pry
 
   puts recipes["attribution"]["text"]
 
   recipes["ingredientLines"].each {|ingredient| puts ingredient}
   recipes["nutritionEstimates"].each do |attribute|
-    puts "#{attribute["attribute"]} #{attribute["value"]} #{attribute["unit"]["name"]}"
+
+    if attribute["description"] == 'Carbohydrate, by difference'
+      puts "#{attribute["description"]} #{attribute["value"]} #{attribute["unit"]["name"]}"
+    end
+    if attribute["description"] == 'Protein'
+      puts "#{attribute["description"]} #{attribute["value"]} #{attribute["unit"]["name"]}"
+    end
+    if attribute["description"] == 'Total lipid (fat)'
+      puts "#{attribute["description"]} #{attribute["value"]} #{attribute["unit"]["name"]}"
+    end
   end
